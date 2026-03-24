@@ -87,20 +87,30 @@ Skill can be exported and reused across systems
 
 ## System Architecture
 
-```
-Canonical Skill (YAML / JSON)
-        ↓
-Adapter Layer (model-specific translation)
-        ↓
-Target AI Models (GPT, Claude, open-source, etc.)
-```
+The following describes the internal execution pipeline of the system,
+complementing the external workflow described above.
+
+<img width="1536" height="236" alt="ChatGPT Image Mar 24, 2026, 01_27_55 AM" src="https://github.com/user-attachments/assets/ec43cf2a-6ede-4ac8-9d97-4055adacc64f" />
 
 ### Components
 
-- **Canonical Layer**: Source of truth for skill definitions
-- **Adapter Layer**: Translates skills into model-specific formats
-- **Execution Layer**: Runs skills on different AI systems
-- **Evaluation Layer**: Compares outputs and ensures consistency
+- **Canonical Layer**  
+  Source of truth for skill definitions (YAML / JSON format)
+
+- **Adapter Layer**  
+  Translates canonical skills into model-specific formats (prompt, tool schema, etc.)
+
+- **Execution Layer**  
+  Executes skills across different AI models (GPT, Claude, open-source models)
+
+- **Evaluation Layer**  
+  Compares outputs across models and measures consistency, correctness, and constraint adherence
+
+- **Refinement Layer**  
+  Iteratively improves instructions, constraints, and structure based on evaluation results
+
+- **Output Layer**  
+Produces a standardized skill package with model-specific implementations
 
 ---
 
