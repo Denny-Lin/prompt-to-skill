@@ -55,6 +55,29 @@ This system allows:
 5. Validating those skills across multiple AI systems
 6. Producing a final standardized skill usable everywhere
 
+### Handling Prompt Ambiguity
+
+User prompts are inherently ambiguous and often under-specified.
+
+Rather than assuming a single correct interpretation, the system is designed to explicitly handle ambiguity as a first-class concern.
+
+The system:
+
+- generates multiple candidate interpretations  
+- maps them into potential skill structures  
+- evaluates or allows selection among candidates  
+- converges toward a structured skill definition  
+
+This transforms the interaction model from direct instruction execution into:
+
+> intent inference → candidate generation → convergence
+
+The goal is not to perfectly interpret a prompt,  
+but to iteratively refine it into a stable and reusable skill.
+
+Ambiguity is not treated as an error,  
+but as a signal that guides the refinement process.
+
 ---
 
 ## Extended Workflow
