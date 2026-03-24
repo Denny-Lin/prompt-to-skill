@@ -1,6 +1,6 @@
 # prompt-to-skill
 
-A universal system for generating, standardizing, and validating AI skills across models.
+A system for generating, standardizing, and validating AI skills across models.
 
 ---
 
@@ -10,7 +10,7 @@ prompt-to-skill is an abstraction layer for AI capabilities.
 
 It transforms vague user intent into structured, reusable, and interoperable skills that can be executed across different AI systems.
 
-Instead of treating prompts as one-time inputs, this project treats them as **compilable units of capability**.
+Instead of starting with a large model, the system focuses on building a skill layer that can later generate the data required for model optimization.
 
 ---
 
@@ -101,6 +101,74 @@ Target AI Models (GPT, Claude, open-source, etc.)
 - **Adapter Layer**: Translates skills into model-specific formats
 - **Execution Layer**: Runs skills on different AI systems
 - **Evaluation Layer**: Compares outputs and ensures consistency
+
+---
+
+## Evolution Strategy
+
+This project follows a system-first approach rather than a model-first approach.
+
+### Why not start with a model?
+
+Training a model for skill generation requires:
+
+- large-scale structured skill data  
+- evaluation signals (success / failure)  
+- clear optimization targets  
+
+None of these exist at the beginning.
+
+---
+
+### System → Data → Model
+
+The system is designed to evolve in the following order:
+
+1. Build system (skill compiler + adapters)  
+2. Enable real usage  
+3. Collect structured skill data  
+4. Capture cross-model evaluation results  
+5. Learn from success and failure patterns  
+6. Only then consider training models  
+
+---
+
+### What data is collected?
+
+The system generates:
+
+- skill definitions  
+- model outputs  
+- cross-model comparisons  
+- evaluation scores  
+
+This creates a unique dataset:
+
+> structured representations of how different AI systems behave across tasks
+
+---
+
+### Future Model Direction
+
+Future models in this system are not replacements for existing LLMs.
+
+They act as:
+
+- skill optimization engines  
+- instruction refinement systems  
+- constraint generators  
+- failure prediction layers  
+
+This is a meta-layer built on top of existing models.
+
+---
+
+### Key Principle
+
+Data comes after system, not before.
+
+The system enables data.  
+The data enables intelligence.
 
 ---
 
