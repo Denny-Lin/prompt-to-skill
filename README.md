@@ -4,6 +4,16 @@ A universal system for generating, standardizing, and validating AI skills acros
 
 ---
 
+## Overview
+
+prompt-to-skill is an abstraction layer for AI capabilities.
+
+It transforms vague user intent into structured, reusable, and interoperable skills that can be executed across different AI systems.
+
+Instead of treating prompts as one-time inputs, this project treats them as **compilable units of capability**.
+
+---
+
 ## Vision
 
 The long-term vision of this project is to become a **universal layer for AI skill standardization**.
@@ -16,6 +26,19 @@ Instead of fragmented prompts and incompatible tool formats, this system aims to
 - Create a shared ecosystem where skills can be reused across AI systems
 
 Ultimately, this project aims to make AI capabilities **portable, testable, and interoperable**.
+
+---
+
+## Positioning
+
+This project can be understood as:
+
+- A **Skill Compiler** for AI systems
+- A **Compatibility Layer** across models
+- A **Standardization Engine** for prompt-derived capabilities
+
+Similar to how a virtual machine abstracts hardware differences,  
+this system abstracts differences between AI models.
 
 ---
 
@@ -38,7 +61,6 @@ This system allows:
 
 <img width="1536" height="1024" alt="workflow" src="https://github.com/user-attachments/assets/1a7d935b-74dd-4edf-881b-1dbb78214ac8" />
 
-
 ```
 User Prompt (possibly includes project URL)
         ↓
@@ -60,6 +82,128 @@ Final standardized skill is produced
         ↓
 Skill can be exported and reused across systems
 ```
+
+---
+
+## System Architecture
+
+```
+Canonical Skill (YAML / JSON)
+        ↓
+Adapter Layer (model-specific translation)
+        ↓
+Target AI Models (GPT, Claude, open-source, etc.)
+```
+
+### Components
+
+- **Canonical Layer**: Source of truth for skill definitions
+- **Adapter Layer**: Translates skills into model-specific formats
+- **Execution Layer**: Runs skills on different AI systems
+- **Evaluation Layer**: Compares outputs and ensures consistency
+
+---
+
+## Roadmap
+
+The system is designed to evolve in stages, from a simple compiler to a full AI skill infrastructure.
+
+### Phase 1: Foundation (Skill Compiler)
+
+- Define canonical skill schema (YAML / JSON)
+- Convert prompt → structured skill
+- Basic normalization rules
+- Support 1–2 AI models (e.g. GPT)
+
+Focus:
+- correctness
+- structure
+- reproducibility
+
+---
+
+### Phase 2: LLM-Assisted Generation
+
+- Use LLM for pattern extraction
+- Improve instruction generation
+- Generate constraints automatically
+- Enhance skill consistency
+
+Focus:
+- quality
+- usability
+- generalization
+
+---
+
+### Phase 3: Cross-Model Evaluation
+
+- Execute skills across multiple models
+- Compare outputs and detect inconsistencies
+- Introduce scoring system
+- Identify failure patterns
+
+Focus:
+- robustness
+- validation
+- reliability
+
+---
+
+### Phase 4: Data Accumulation Layer
+
+- Store skill definitions
+- Track evaluation results
+- Collect success/failure cases
+- Build dataset of skill behavior
+
+Focus:
+- data
+- observability
+- learning
+
+---
+
+### Phase 5: Optimization Engine
+
+- Automatically refine skills based on evaluation
+- Suggest improvements to instructions and constraints
+- Model-specific optimization strategies
+- Reduce ambiguity and variance
+
+Focus:
+- automation
+- performance
+- stability
+
+---
+
+### Phase 6: Skill Intelligence Model (Future)
+
+- Train models to optimize skill generation
+- Predict failure cases before execution
+- Adapt skills dynamically per model
+- Recommend skill structures
+
+Focus:
+- intelligence
+- prediction
+- self-improvement
+
+---
+
+### Phase 7: Ecosystem & Standardization
+
+- Public skill registry
+- Versioning and comparison tools
+- Open skill specification standard
+- Integration with major AI frameworks
+- Community-driven validation
+
+Focus:
+- adoption
+- interoperability
+- ecosystem growth
 
 ---
 
@@ -129,9 +273,7 @@ This format serves as the source of truth.
 
 ## Multi-Model Evaluation
 
-One of the most important components is evaluation.
-
-Each generated skill can be:
+Each generated skill is:
 
 - Executed across multiple models
 - Compared for output consistency
@@ -141,16 +283,12 @@ Example criteria:
 
 - format compliance
 - factual correctness
-- length constraints
+- constraint adherence
 - semantic alignment
 
 ---
 
 ## Integration Model
-
-The system is designed to be externally callable.
-
-Possible integration patterns:
 
 ### 1. URL-based invocation
 
@@ -164,8 +302,6 @@ The AI system retrieves and uses the skill definition.
 
 ### 2. API-based invocation
 
-External systems call:
-
 ```
 POST /generate-skill
 POST /evaluate-skill
@@ -174,7 +310,9 @@ GET /skill/{id}
 
 ### 3. Export and Import
 
-Users download skill files and import into their own AI systems.
+- YAML / JSON skill files
+- Tool schema exports
+- Prompt templates
 
 ---
 
@@ -185,8 +323,7 @@ Users download skill files and import into their own AI systems.
 Each platform defines tools and skills differently.
 
 Solution:
-- Use a canonical format
-- Build adapters for each platform
+- Canonical format + adapters
 
 ---
 
@@ -196,80 +333,73 @@ Different models interpret instructions differently.
 
 Solution:
 - Cross-model evaluation
-- Constraint enforcement
 - Iterative refinement
 
 ---
 
-### 3. Limited External Tool Access
+### 3. Non-deterministic Outputs
 
-Not all AI systems can call external APIs or read URLs.
+AI systems are probabilistic.
 
 Solution:
-- Provide multiple integration methods
-- Support manual export/import
+- Scoring + averaging
+- constraint enforcement
 
 ---
 
-### 4. Prompt Ambiguity
+### 4. Limited External Integration
 
-Natural language is inherently ambiguous.
+Not all systems support external calls.
 
 Solution:
-- Human-in-the-loop selection
-- Pattern extraction
-- Structured constraints
+- Multiple integration paths (API, export, manual)
 
 ---
 
 ### 5. Adoption Barrier
 
-For this to work broadly, others must adopt the format.
+Standards require ecosystem buy-in.
 
 Solution:
-- Open standard
-- Clear documentation
+- Open format
 - Simple tooling
-- Developer-friendly APIs
+- Developer-first APIs
 
 ---
 
 ## Why This Matters
 
 Today:
-- AI usage is repetitive
-- Prompts are disposable
-- Skills are not reusable
 
-This project changes that by enabling:
+- Prompts are disposable
+- Outputs are not reusable
+- Skills are fragmented
+
+This project enables:
 
 - Persistent AI capabilities
-- Shared skill ecosystems
 - Cross-platform interoperability
+- Reusable skill systems
 
 ---
 
 ## Future Directions
 
 - Skill registry and marketplace
-- Public skill standards
-- Community-driven skill validation
-- Automated skill optimization
-- Benchmarking across models
-- Integration with agent frameworks
+- Versioning and diffing
+- Automated optimization loops
+- Benchmark datasets
+- Agent framework integrations
 - Plugin ecosystem
 
 ---
 
 ## Philosophy
 
-Start from ambiguity.
-
-Refine through interaction.
-
-Standardize through structure.
-
-Validate through diversity.
+Start from ambiguity.  
+Refine through interaction.  
+Standardize through structure.  
+Validate through diversity.  
 
 ---
 
