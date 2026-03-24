@@ -1,243 +1,281 @@
 # prompt-to-skill
 
-Turn vague prompts into structured, reusable AI skills.
+A universal system for generating, standardizing, and validating AI skills across models.
 
-## Overview
+---
 
-Most users do not know exactly what they want at the beginning.
+## Vision
 
-They start with vague prompts such as:
+The long-term vision of this project is to become a **universal layer for AI skill standardization**.
 
-- "help me improve this"
-- "make this better"
-- "summarize this"
+Instead of fragmented prompts and incompatible tool formats, this system aims to:
 
-What they actually need is not just a better answer, but a clear, reusable specification.
+- Define a common skill representation
+- Enable cross-model compatibility
+- Allow skills to be generated, tested, and refined automatically
+- Create a shared ecosystem where skills can be reused across AI systems
 
-`prompt-to-skill` is a project for transforming unclear intent into structured AI skills that can be reused, versioned, and extended.
+Ultimately, this project aims to make AI capabilities **portable, testable, and interoperable**.
 
-## Problem
+---
 
-Current AI tools are good at generating responses, but they are not always good at turning good responses into reusable systems.
+## Core Idea
 
-Common pain points:
+Users do not always know how to express precise requirements.
 
-- Users do not know how to express requirements clearly
-- Good outputs are not converted into repeatable patterns
-- Prompts are hard to standardize across models and platforms
-- There is no easy way to turn an ad hoc interaction into a persistent skill
+This system allows:
 
-## Solution
+1. Starting from vague intent
+2. Generating candidate outputs
+3. Selecting preferred results
+4. Converting them into structured skills
+5. Validating those skills across multiple AI systems
+6. Producing a final standardized skill usable everywhere
 
-This project provides a workflow for:
+---
 
-1. Starting from a vague prompt
-2. Generating multiple candidate outputs
-3. Letting the user choose the best result
-4. Extracting patterns from that result
-5. Converting the pattern into a reusable skill definition
+## Extended Workflow
 
-The goal is to bridge natural language and structured AI behavior.
-
-## Core Workflow
-
-```text
-Vague Prompt
-    ↓
-Generate Multiple Outputs
-    ↓
-Select Preferred Output
-    ↓
-Extract Structure and Patterns
-    ↓
-Generate Skill Specification
-    ↓
-Reusable Skill
+```
+User Prompt (possibly includes project URL)
+        ↓
+AI detects external skill source
+        ↓
+Request sent to prompt-to-skill platform
+        ↓
+Platform generates candidate outputs
+        ↓
+User or system selects preferred result
+        ↓
+Skill is extracted and structured
+        ↓
+Multi-model evaluation (cross-AI testing)
+        ↓
+Skill is refined and normalized
+        ↓
+Final standardized skill is produced
+        ↓
+Skill can be exported and reused across systems
 ```
 
-## What This Project Produces
+---
 
-A skill is represented as a structured file that can include:
+## Key Capability
 
-- name
-- purpose
-- trigger
-- inputs
-- outputs
-- constraints
-- instructions
-- examples
-- metadata
+This system is not just a generator. It introduces:
 
-This makes the skill readable by humans and usable by software.
+### 1. Skill Standardization
 
-## Example
+Define a canonical skill format that is:
 
-### Input
+- Human-readable
+- Machine-readable
+- Model-agnostic
 
-```text
-help me summarize this
-```
+### 2. Cross-AI Evaluation
 
-### Candidate Output
+A single skill can be tested across:
 
-```text
-- Key point A
-- Key point B
-- Key point C
-```
+- Different models
+- Different providers
+- Different prompt styles
 
-### Generated Skill
+This ensures the skill is robust and consistent.
 
-```yaml
-name: summarize_text
-purpose: Summarize text into key bullet points
+### 3. Automatic Refinement
 
-trigger:
-  - summarize
-  - summarize this
-  - summarize the text
+Based on evaluation results, the system can:
 
-inputs:
-  text:
-    type: string
-    required: true
-  max_points:
-    type: integer
-    required: false
-    default: 3
+- Adjust instructions
+- Add constraints
+- Improve consistency
+- Reduce ambiguity
 
-outputs:
-  bullets:
-    type: array
-    items: string
+### 4. Skill Export
 
-constraints:
-  - no new information
-  - concise output
-  - 3 to 5 bullet points
+Skills can be exported into multiple formats:
 
-instructions: |
-  Summarize the input text into concise bullet points.
-  Do not add information that is not present in the input.
+- Prompt templates
+- Tool/function schemas
+- Agent-compatible formats
+- API endpoints
 
-examples:
-  - input:
-      text: "..."
-    output:
-      bullets:
-        - "..."
-```
+---
 
-## Why This Matters
-
-Writing a good prompt is hard.
-
-Recognizing a good result is much easier.
-
-This project lets users move from:
-
-- guessing
-- to selecting
-- to refining
-- to formalizing
-
-The result is a reusable skill instead of a one-time answer.
-
-## Project Goals
-
-- Make prompt engineering more intuitive
-- Convert vague intent into structured skill definitions
-- Support reusable AI capabilities
-- Reduce prompt trial and error
-- Provide a standard format that can be extended across platforms
-
-## Design Principles
-
-### 1. Human-readable
-
-The skill format should be easy to read and edit.
-
-### 2. Machine-friendly
-
-The same skill should be easy to parse, validate, and transform.
-
-### 3. Model-agnostic
-
-The core format should not depend on one specific model or vendor.
-
-### 4. Extensible
-
-New fields, adapters, and output targets should be easy to add later.
-
-## Proposed Skill Format
-
-A skill definition may be stored as YAML or JSON.
-
-Recommended source format:
-
-- YAML for editing and version control
-- JSON for runtime use or API integration
-
-Example structure:
+## Canonical Skill Format
 
 ```yaml
 name: string
-purpose: string
-trigger: list[string]
+description: string
+
 inputs: object
 outputs: object
-constraints: list[string]
+
 instructions: string
-examples: list[object]
-metadata: object
+constraints: list[string]
+examples: list
+
+metadata:
+  version: string
+  compatibility: list
 ```
 
-## Future Extensions
+This format serves as the source of truth.
 
-This project can grow into a broader platform with:
+---
 
-- Skill library
-- Version history
-- Comparison tools
-- Prompt-to-spec generation
-- Export to OpenAI, LangChain, or other agent frameworks
-- Validation and evaluation tools
-- Human-in-the-loop refinement
-- Skill sharing and reuse
+## Multi-Model Evaluation
 
-## MVP Scope
+One of the most important components is evaluation.
 
-The first version can be very small:
+Each generated skill can be:
 
-- Input a vague prompt
-- Generate a few candidate outputs
-- Let the user choose one
-- Convert the selected result into a structured skill file
-- Save the skill for reuse
+- Executed across multiple models
+- Compared for output consistency
+- Scored based on predefined criteria
 
-## Suggested Folder Structure
+Example criteria:
 
-```text
-prompt-to-skill/
-├── skills/
-│   └── summarize_text.yaml
-├── src/
-├── README.md
-└── LICENSE
+- format compliance
+- factual correctness
+- length constraints
+- semantic alignment
+
+---
+
+## Integration Model
+
+The system is designed to be externally callable.
+
+Possible integration patterns:
+
+### 1. URL-based invocation
+
+Users include a URL in their prompt:
+
+```
+use https://your-site.com/skill
 ```
 
-## Tech Stack
+The AI system retrieves and uses the skill definition.
 
-This project is implementation-agnostic.
+### 2. API-based invocation
 
-Possible choices:
+External systems call:
 
-- Frontend: React, Next.js
-- Backend: Python, Node.js
-- LLM provider: OpenAI or compatible APIs
-- Storage: Local files, database, or object storage
+```
+POST /generate-skill
+POST /evaluate-skill
+GET /skill/{id}
+```
+
+### 3. Export and Import
+
+Users download skill files and import into their own AI systems.
+
+---
+
+## Challenges
+
+### 1. Lack of Standard Across AI Systems
+
+Each platform defines tools and skills differently.
+
+Solution:
+- Use a canonical format
+- Build adapters for each platform
+
+---
+
+### 2. Inconsistent Model Behavior
+
+Different models interpret instructions differently.
+
+Solution:
+- Cross-model evaluation
+- Constraint enforcement
+- Iterative refinement
+
+---
+
+### 3. Limited External Tool Access
+
+Not all AI systems can call external APIs or read URLs.
+
+Solution:
+- Provide multiple integration methods
+- Support manual export/import
+
+---
+
+### 4. Prompt Ambiguity
+
+Natural language is inherently ambiguous.
+
+Solution:
+- Human-in-the-loop selection
+- Pattern extraction
+- Structured constraints
+
+---
+
+### 5. Adoption Barrier
+
+For this to work broadly, others must adopt the format.
+
+Solution:
+- Open standard
+- Clear documentation
+- Simple tooling
+- Developer-friendly APIs
+
+---
+
+## Why This Matters
+
+Today:
+- AI usage is repetitive
+- Prompts are disposable
+- Skills are not reusable
+
+This project changes that by enabling:
+
+- Persistent AI capabilities
+- Shared skill ecosystems
+- Cross-platform interoperability
+
+---
+
+## Future Directions
+
+- Skill registry and marketplace
+- Public skill standards
+- Community-driven skill validation
+- Automated skill optimization
+- Benchmarking across models
+- Integration with agent frameworks
+- Plugin ecosystem
+
+---
+
+## Philosophy
+
+Start from ambiguity.
+
+Refine through interaction.
+
+Standardize through structure.
+
+Validate through diversity.
+
+---
 
 ## Contributing
 
-Ideas, feedback, and contributions are welcome.
+Contributions, ideas, and discussions are welcome.
+
+---
+
+## License
+
+MIT
