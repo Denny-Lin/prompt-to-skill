@@ -36,6 +36,9 @@ This system allows:
 
 ## Extended Workflow
 
+<img width="1536" height="1024" alt="workflow" src="https://github.com/user-attachments/assets/1a7d935b-74dd-4edf-881b-1dbb78214ac8" />
+
+
 ```
 User Prompt (possibly includes project URL)
         ↓
@@ -273,9 +276,3 @@ Validate through diversity.
 ## Contributing
 
 Contributions, ideas, and discussions are welcome.
-
----
-
-## License
-
-MIT
